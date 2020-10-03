@@ -9,8 +9,9 @@ import reducer from "./src/context/reducer";
 // first state to provide in react reducer
 const initialState = {
   score: 0,
-  gameTime: 30,
+  gameTime: 60,
   level: 1,
+  isGameOver: false,
 };
 
 export default function App() {

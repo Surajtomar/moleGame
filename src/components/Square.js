@@ -5,10 +5,7 @@ import { GameContext } from "../context/context";
 
 const Square = () => {
   const { state, dispatch } = useContext(GameContext);
-
   const [moleActive, setMoleActive] = useState(false);
-  const [isGameOver, setIsGameOver] = useState(false);
-
   const timeAfterMoleCome = (Math.random() * (10 - 2) + 2) * 1000;
   const timeAfterMoleGo = (Math.random() * 1.5 + (4 - state.level)) * 1000;
 
@@ -25,7 +22,6 @@ const Square = () => {
   }, []);
 
   function endGame() {
-    setIsGameOver(true);
     clearInterval(timerId);
   }
 
@@ -36,24 +32,14 @@ const Square = () => {
 
   return (
     <TouchableOpacity onPress={moleActive ? addScore : null}>
-      {isGameOver ? (
-        <>
-          <Image
-            source={require("../../assets/hole.png")}
-            style={moleActive ? styles.mole : styles.square}
-          />
-          <Text>X </Text>
-        </>
-      ) : (
-        <Image
-          source={
-            moleActive
-              ? require("../../assets/mole.png")
-              : require("../../assets/hole.png")
-          }
-          style={moleActive ? styles.mole : styles.square}
-        />
-      )}
+      <Image
+        source={
+          moleActive
+            ? require("../../assets/mole.png")
+            : require("../../assets/hole.png")
+        }
+        style={moleActive ? styles.mole : styles.square}
+      />
     </TouchableOpacity>
   );
 };
